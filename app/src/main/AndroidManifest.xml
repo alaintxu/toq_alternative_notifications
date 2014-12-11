@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="eus.alaintxu.toq_alternative_notifications"
+    android:versionCode="001"
+    android:versionName="0.0.1" >
+
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="21" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/toq_alternative_notifications"
+        android:label="@string/app_name"
+        android:theme="@style/AppBaseTheme" >
+        
+        <activity android:name=".ToqAlternativeNotifications"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden" 
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <receiver 
+            android:name=".toq.ToqAppletInstallationBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">            
+            <intent-filter>
+                <action android:name="com.qualcomm.toq.smartwatch.install.applet" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".NotificationListener"
+            android:label="@string/service_name"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+        <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"/>
+    </application>
+
+</manifest>

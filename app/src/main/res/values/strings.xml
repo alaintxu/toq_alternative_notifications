@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ToqAN</string>
+    <string name="service_name">ToqAN</string>
+    <string name="action_settings">Settings</string>
+
+    <!--Buttons-->
+    <string name="doc_install_button">Install Deck of Cards</string>
+    <string name="doc_uninstall_button">Uninstall Deck of Cards</string>
+    <string name="doc_check_permissions">Check Notification Permissions</string>
+    <string name="send_notification_button">Send test notification</string>
+
+    <!-- Status -->
+    <string name="status_connecting">Connecting&#8230;</string>
+    <string name="status_disconnected">Disconnected from Toq app service</string>
+    <string name="status_installation_successful">Deck of cards installed successfully</string>
+    <string name="status_installation_denied">Deck of cards installation denied</string>
+    <string name="status_connected">Connected to Toq app service</string>
+    <string name="status_uninstalled">Deck of cards uninstalled</string>
+    <string name="intent_toq_watch_connected">Toq watch is connected to Toq app</string>
+    <string name="intent_toq_watch_disconnected">Toq watch is disconnected from Toq app</string>
+
+    <!-- Events -->
+    <string name="event_card_open">"Card open: "</string>
+    <string name="event_card_visible">"Card visible: "</string>
+    <string name="event_card_invisible">"Card invisible: "</string>
+    <string name="event_card_closed">"Card closed: "</string>
+    <string name="event_menu_option_selected">"Menu option selected: "</string>
+
+    <!-- Errors -->
+    <string name="error_checking_status">Error checking if Toq watch is connected or deck of cards is installed</string>
+    <string name="error_initialising_icons">Error occurred retrieving icons</string>
+    <string name="error_initialising_card_images">Error occurred retrieving card images</string>
+    <string name="error_installing_deck_of_cards">Error installing deck of cards applet</string>
+    <string name="error_updating_deck_of_cards">Error updating deck of cards applet</string>
+    <string name="error_uninstalling_deck_of_cards">Error uninstalling deck of cards applet</string>
+    <string name="error_sending_notification">Error sending notification</string>
+
+    <!-- Cards -->
+    <string name="card_btn_delete">Delete</string>
+    <string name="card_btn_respond">Respond</string>
+
+    <!-- Notifications -->
+    <string name="test_notification_title">Test notification</string>
+    <string name="test_notification_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus efficitur at erat nec condimentum. Nam eget nisi vitae massa gravida commodo. Etiam luctus metus at turpis cursus molestie. Sed sagittis orci purus, et fermentum nisi pulvinar ultricies. Curabitur egestas nibh non porta finibus. Integer maximus, orci et efficitur gravida, leo eros egestas neque, commodo ultricies lorem odio id risus. Curabitur venenatis dolor id cursus hendrerit. Donec mattis et velit eu laoreet. Duis et dignissim massa. Pellentesque finibus elit quis pharetra faucibus. Vivamus hendrerit bibendum ex, a sagittis mi imperdiet id. Donec venenatis tempus ex, sit amet eleifend sem commodo a. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas egestas erat vitae eleifend consequat. Maecenas accumsan elit arcu. Vivamus semper risus sed tincidunt sagittis. Integer cursus dui in arcu vehicula, non suscipit diam accumsan. Proin nulla est, pharetra et ante dignissim, ullamcorper convallis ligula. Phasellus laoreet leo elit, eget pretium leo fringilla gravida. Vestibulum vitae purus eget eros aliquam bibendum ut sit amet dui. Vivamus placerat auctor nisl ac eleifend. Fusce felis metus, mollis sit amet lacus sit amet, tempor consectetur ligula. Proin rutrum lobortis risus, quis facilisis urna tincidunt eu. Morbi ac gravida arcu, ut gravida sem. Suspendisse maximus in purus sit amet mollis. Suspendisse potenti.</string>
+
+</resources>
