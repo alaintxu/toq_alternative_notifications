@@ -1,13 +1,11 @@
 package eus.alaintxu.toq_alternative_notifications;
 
 import android.app.Activity;
-import android.content.ContentResolver;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import eus.alaintxu.toq_alternative_notifications.toq.ToqInterface;
 import eus.alaintxu.toq_alternative_notifications.toq.ToqNotification;
@@ -17,7 +15,6 @@ import eus.alaintxu.toq_alternative_notifications.toq.ToqNotification;
  * Main activity
  */
 public class ToqAlternativeNotifications extends Activity{
-
     ToqInterface toqInterface = null;
 
     public void onCreate(Bundle icicle){
@@ -39,23 +36,6 @@ public class ToqAlternativeNotifications extends Activity{
         Log.d("ToqAN", "ToqAN.onStart");
 
         toqInterface.start();
-    }
-
-    public void onStop(){
-        
-        super.onStop();
-
-        Log.d("ToqAN", "ToqAN.onStop");
-        toqInterface.stop();
-    }
-
-    public void onDestroy(){
-        
-        super.onDestroy();
-
-        Log.d("ToqAN", "ToqAN.onDestroy");
-
-        toqInterface.destroy();
     }
     
     /*
@@ -81,7 +61,7 @@ public class ToqAlternativeNotifications extends Activity{
      * onClick action listener for every button
      */
     public void uiButtonClicked(View v){
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.doc_install_button:
                 toqInterface.installDeckOfCards();
                 break;
@@ -97,6 +77,13 @@ public class ToqAlternativeNotifications extends Activity{
                 toqNotification.setTitle(getString(R.string.test_notification_title));
                 toqNotification.setText(getString(R.string.test_notification_text));
                 toqInterface.notifyToq(toqNotification);
+                break;
+            case R.id.end_service_button:
+                toqInterface.destroy();
+
+                /* I don't know how to kill NotificationListener service */
+
+                finish();
                 break;
         }
     }

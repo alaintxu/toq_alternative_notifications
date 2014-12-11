@@ -127,7 +127,7 @@ public class ToqInterface {
             deckOfCardsManager.sendNotification(notification);
         }
         catch (RemoteDeckOfCardsException e){
-            Toast.makeText(activity, activity.getString(R.string.error_sending_notification), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(activity, activity.getString(R.string.error_sending_notification), Toast.LENGTH_SHORT).show();
             Log.e("ToqAN", "ToqAN.sendNotification - error sending notification", e);
         }
     }
@@ -164,7 +164,7 @@ public class ToqInterface {
         }
     }
 
-    public void stop(){
+    public void destroy(){
 
         // Unregister toq app state receiver
         unregisterStateReceiver();
@@ -172,9 +172,6 @@ public class ToqInterface {
         // Remove listeners
         deckOfCardsManager.removeDeckOfCardsManagerListener(deckOfCardsManagerListener);
         deckOfCardsManager.removeDeckOfCardsEventListener(deckOfCardsEventListener);
-    }
-
-    public void destroy(){
 
         deckOfCardsManager.disconnect();
     }

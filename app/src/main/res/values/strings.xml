@@ -10,6 +10,7 @@
     <string name="doc_uninstall_button">Uninstall Deck of Cards</string>
     <string name="doc_check_permissions">Check Notification Permissions</string>
     <string name="send_notification_button">Send test notification</string>
+    <string name="end_service_button">End Service and exit</string>
 
     <!-- Status -->
     <string name="status_connecting">Connecting&#8230;</string>

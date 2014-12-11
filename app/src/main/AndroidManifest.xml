@@ -13,33 +13,38 @@
         android:icon="@drawable/toq_alternative_notifications"
         android:label="@string/app_name"
         android:theme="@style/AppBaseTheme" >
-        
-        <activity android:name=".ToqAlternativeNotifications"
+        <activity
+            android:name=".ToqAlternativeNotifications"
+            android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="stateHidden" 
-            android:label="@string/app_name">
+            android:windowSoftInputMode="stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <receiver 
+
+        <receiver
             android:name=".toq.ToqAppletInstallationBroadcastReceiver"
             android:enabled="true"
-            android:exported="true">            
+            android:exported="true" >
             <intent-filter>
                 <action android:name="com.qualcomm.toq.smartwatch.install.applet" />
             </intent-filter>
         </receiver>
-        <service android:name=".NotificationListener"
+
+        <service
+            android:name=".NotificationListener"
             android:label="@string/service_name"
-            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
-        <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"/>
+
+        <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" />
+
     </application>
 
 </manifest>
