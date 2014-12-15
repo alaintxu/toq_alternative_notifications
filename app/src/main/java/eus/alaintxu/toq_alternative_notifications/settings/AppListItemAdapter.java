@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 import eus.alaintxu.toq_alternative_notifications.R;
 

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,8 +65,9 @@ public class AppListActivity extends Activity {
                     application.notify = true;
                 else
                     application.notify = false;
-
-                mApplications.add(application);
+                if(!pkgAllreadyExists(application.pkg)) {
+                    mApplications.add(application);
+                }
             }
         }
     }
@@ -86,7 +88,6 @@ public class AppListActivity extends Activity {
                 if (checked) {
                     // check/uncheck every app
                     setAppCheckboxes(all);
-                    alia.notifyDataSetChanged();
                 }
                 setAllCheckbox(all);
                 setNoneCheckbox(!all);
@@ -101,6 +102,7 @@ public class AppListActivity extends Activity {
                     // If any app is unchecked, uncheck "All" checkbox
                     setAllCheckbox(false);
                 }
+                Toast.makeText(getApplicationContext(),"pkg: "+mApplications.get(position).pkg+" | "+position+" | "+checked,Toast.LENGTH_LONG).show();
                 break;
         }
         savePreferences();
@@ -128,7 +130,22 @@ public class AppListActivity extends Activity {
                 pkgs.add(app.pkg.toString());
             }
         }
+        editor.remove("pkgs");
         editor.putStringSet("pkgs",pkgs).commit();
 
+        alia.notifyDataSetChanged();
+    }
+
+    public Boolean pkgAllreadyExists(CharSequence pkg){
+        Boolean exists = false;
+
+        for(MyApplicationInfo app : mApplications){
+            if(app.pkg.equals(pkg)){
+                exists = true;
+                break;
+            }
+        }
+
+        return exists;
     }
 }
