@@ -129,7 +129,7 @@ public class ToqNotification {
     }
 
     public String getText() {
-        return text;
+        return text+'\n'+pkg;
     }
 
     public void setText(String text) {

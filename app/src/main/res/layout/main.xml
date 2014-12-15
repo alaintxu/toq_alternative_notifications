@@ -62,6 +62,20 @@
                 android:layout_height="1dp" />
 
             <Button
+                android:id="@+id/open_settings_button"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:onClick="uiButtonClicked"
+                android:text="@string/open_settings_button" />
+            <View
+                android:background="@drawable/divider"
+                android:layout_width="fill_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_height="1dp" />
+
+            <Button
                 android:id="@+id/end_service_button"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"

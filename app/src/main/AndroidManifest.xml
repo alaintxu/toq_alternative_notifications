@@ -24,6 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".settings.AppListActivity"
+            android:label="@string/app_list_activity_name"
+            android:parentActivityName="eus.alaintxu.toq_alternative_notifications.ToqAlternativeNotifications">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="eus.alaintxu.toq_alternative_notifications.ToqAlternativeNotifications"/>
+        </activity>
 
         <receiver
             android:name=".toq.ToqAppletInstallationBroadcastReceiver"
@@ -43,8 +51,8 @@
             </intent-filter>
         </service>
 
-        <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" />
 
     </application>
+    <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" />
 
 </manifest>

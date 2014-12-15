@@ -1,12 +1,15 @@
 package eus.alaintxu.toq_alternative_notifications;
 
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import java.util.List;
+
+import eus.alaintxu.toq_alternative_notifications.settings.AppListActivity;
 import eus.alaintxu.toq_alternative_notifications.toq.ToqInterface;
 import eus.alaintxu.toq_alternative_notifications.toq.ToqNotification;
 
@@ -27,6 +30,13 @@ public class ToqAlternativeNotifications extends Activity{
 
         toqInterface = ToqInterface.getInstance();
         toqInterface.initToqInterface(this);
+        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        /*List pkgAppsList = getPackageManager().getInstalledApplications(0);
+        //List pkgAppsList = getPackageManager().queryIntentActivities( mainIntent, 0);
+        for (Object pkgApp : pkgAppsList){
+            String pkg = ((ApplicationInfo)pkgApp).packageName;
+        }*/
     }
 
     protected void onStart(){
@@ -57,6 +67,11 @@ public class ToqAlternativeNotifications extends Activity{
         startActivity(intent);
     }
 
+    public void openSettings(){
+        Intent intent = new Intent(this, AppListActivity.class);
+        startActivity(intent);
+    }
+
     /*
      * onClick action listener for every button
      */
@@ -77,6 +92,9 @@ public class ToqAlternativeNotifications extends Activity{
                 toqNotification.setTitle(getString(R.string.test_notification_title));
                 toqNotification.setText(getString(R.string.test_notification_text));
                 toqInterface.notifyToq(toqNotification);
+                break;
+            case R.id.open_settings_button:
+                openSettings();
                 break;
             case R.id.end_service_button:
                 toqInterface.destroy();
