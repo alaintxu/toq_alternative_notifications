@@ -203,7 +203,7 @@ public class ToqNotification {
 
     public String[] getGenericNotificationText() {
         String text = "";
-        text       += getText()+"\n\n";
+        text       += getText()+"\n \n";
         text       += getAppName();
 
         return ToqInterface.splitString(text);

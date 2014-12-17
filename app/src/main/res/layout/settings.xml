@@ -2,32 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <CheckBox
-        android:layout_width="wrap_content"
+
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/all_apps_checkbox"
-        android:id="@+id/all_apps_checkbox"
+        android:text="@string/app_list_description"
+        android:id="@+id/app_list_description"
+        android:textSize="22sp"
         android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_margin="5dp"
-        android:layout_weight="0"
-        android:onClick="onCheckBoxClicked"/>
+        android:layout_margin="5dp"/>
 
     <ListView
         android:id="@+id/appsListView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/none_apps_checkbox"
-        android:id="@+id/none_apps_checkbox"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_margin="5dp"
-        android:layout_weight="0"
-        android:onClick="onCheckBoxClicked" />
 
 </LinearLayout>

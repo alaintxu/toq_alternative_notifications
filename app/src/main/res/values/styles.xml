@@ -1,3 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="AppBaseTheme" parent="android:Theme.Material.Light.DarkActionBar"></style>
+
+    <style name="Divider">
+        <item name="android:background">@drawable/divider</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
+    <style name="TitleText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="StepTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="StepInfoButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:layout_weight">0</item>
+        <item name="android:src">@android:drawable/ic_menu_info_details</item>
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:onClick">collapseView</item>
+        <item name="android:background">@null</item>
+    </style>
+    <style name="StepDescription">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:visibility">gone</item>
+    </style>
+    <style name="StepButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:onClick">uiButtonClicked</item>
+    </style>
 </resources>

@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import eus.alaintxu.toq_alternative_notifications.settings.AppListActivity;
 import eus.alaintxu.toq_alternative_notifications.toq.ToqInterface;
@@ -31,6 +35,31 @@ public class ToqAlternativeNotifications extends Activity{
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_actions,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.action_apps:
+                openSettings();
+                return true;
+            case R.id.action_stop:
+                toqInterface.destroy();
+
+                /* I don't know how to kill NotificationListener service */
+
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     protected void onStart(){
 
         super.onStart();
@@ -54,6 +83,40 @@ public class ToqAlternativeNotifications extends Activity{
         startActivity(intent);
     }
 
+    public void collapseView(View v){
+        int view_id = -1;
+        switch (v.getId()){
+            case R.id.steps_install_deck_of_card_button:
+                view_id = R.id.steps_install_deck_of_card;
+                break;
+            case R.id.steps_connection_button:
+                view_id = R.id.steps_connection;
+                break;
+            case R.id.steps_permissions_button:
+                view_id = R.id.steps_permissions;
+                break;
+            case R.id.steps_duplicate_notifications_button:
+                view_id = R.id.steps_duplicate_notifications;
+                break;
+            case R.id.steps_uninstall_deck_of_card_button:
+                view_id = R.id.steps_uninstall_deck_of_card;
+                break;
+        }
+
+        if (view_id != -1){
+            toggleVisibility(view_id);
+        }
+    }
+
+    private void toggleVisibility(int viewId) {
+        TextView tv = (TextView) this.findViewById(viewId);
+        if (tv.getVisibility()==TextView.VISIBLE){
+            tv.setVisibility(TextView.GONE);
+        }else{
+            tv.setVisibility(TextView.VISIBLE);
+        }
+    }
+
     /*
      * onClick action listener for every button
      */
@@ -68,22 +131,13 @@ public class ToqAlternativeNotifications extends Activity{
             case R.id.doc_check_permissions:
                 checkNotificationPermissions();
                 break;
-            case R.id.send_notification_button:
+            case R.id.check_connection_button:
                 ToqNotification toqNotification = new ToqNotification();
                 toqNotification.setWhen(System.currentTimeMillis());
                 toqNotification.setTitle(getString(R.string.test_notification_title));
+                toqNotification.setAppName("ToqAN");
                 toqNotification.setText(getString(R.string.test_notification_text));
                 toqInterface.notifyToq(toqNotification);
-                break;
-            case R.id.open_settings_button:
-                openSettings();
-                break;
-            case R.id.end_service_button:
-                toqInterface.destroy();
-
-                /* I don't know how to kill NotificationListener service */
-
-                finish();
                 break;
         }
     }
