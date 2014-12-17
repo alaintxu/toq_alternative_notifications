@@ -19,5 +19,5 @@ android {
 }
 
 dependencies {
-    compile files('libs/android-toq-api-1.5.2.jar')
+    provided files('libs/android-toq-api-1.5.2.jar')
 }
