@@ -2,12 +2,9 @@ package eus.alaintxu.toq_alternative_notifications;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
-import java.util.List;
 
 import eus.alaintxu.toq_alternative_notifications.settings.AppListActivity;
 import eus.alaintxu.toq_alternative_notifications.toq.ToqInterface;
@@ -32,11 +29,6 @@ public class ToqAlternativeNotifications extends Activity{
         toqInterface.initToqInterface(this);
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-        /*List pkgAppsList = getPackageManager().getInstalledApplications(0);
-        //List pkgAppsList = getPackageManager().queryIntentActivities( mainIntent, 0);
-        for (Object pkgApp : pkgAppsList){
-            String pkg = ((ApplicationInfo)pkgApp).packageName;
-        }*/
     }
 
     protected void onStart(){
@@ -52,16 +44,6 @@ public class ToqAlternativeNotifications extends Activity{
     checks if it has permissions to read notifications
      */
     public void checkNotificationPermissions(){
-        /*ContentResolver contentResolver = this.getContentResolver();
-        String enabledNotificationListeners = Settings.Secure.getString(contentResolver, "enabled_notification_listeners");
-        String packageName = this.getPackageName();
-        if (enabledNotificationListeners == null || !enabledNotificationListeners.contains(packageName)){
-            Toast.makeText(this.getApplicationContext(),"Notification disabled",Toast.LENGTH_LONG).show();
-        }
-        else{
-            Toast.makeText(this.getApplicationContext(),"Notification enabled",Toast.LENGTH_LONG).show();
-        }*/
-
         // Send user to Notification settings
         Intent intent=new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
         startActivity(intent);

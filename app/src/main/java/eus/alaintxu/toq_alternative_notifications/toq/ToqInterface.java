@@ -26,6 +26,7 @@ import com.qualcomm.toq.smartwatch.api.v1.deckofcards.resource.DeckOfCardsLaunch
 import com.qualcomm.toq.smartwatch.api.v1.deckofcards.util.ParcelableUtil;
 
 import java.io.InputStream;
+import java.util.Map;
 
 import eus.alaintxu.toq_alternative_notifications.R;
 
@@ -89,7 +90,7 @@ public class ToqInterface {
     }
 
 
-    public void updateDeckOfCardsWithNotifications(StatusBarNotification[] sbns) {
+    public void updateDeckOfCardsWithNotifications(StatusBarNotification[] sbns,Map<CharSequence,CharSequence> appNames) {
         ListCard listCard = deckOfCards.getListCard();
         deleteListCard(listCard);
 
@@ -97,7 +98,7 @@ public class ToqInterface {
             int nofnotifications = sbns.length;
 
             for (int i = 0; i < nofnotifications; i++) {
-                ToqNotification toqNotification = new ToqNotification(sbns[i]);
+                ToqNotification toqNotification = new ToqNotification(sbns[i],appNames);
                 try {
                     if (toqNotification.getTitle() != "")
                         listCard.add(toqNotification.getNotificationSimpleTextCard(i));
@@ -488,7 +489,7 @@ public class ToqInterface {
 
         Log.d("ToqAN", "ToqAN.installDeckOfCards");
 
-        updateDeckOfCardsWithNotifications(null);
+        updateDeckOfCardsWithNotifications(null,null);
 
         try{
             deckOfCardsManager.installDeckOfCards(deckOfCards, resourceStore);
@@ -516,8 +517,8 @@ public class ToqInterface {
             deckOfCardsManager.updateDeckOfCards(deckOfCards, resourceStore);
         }
         catch (RemoteDeckOfCardsException e){
-            Toast.makeText(activity, activity.getString(R.string.error_updating_deck_of_cards), Toast.LENGTH_SHORT).show();
-            Log.e("ToqAN", "ToqAN.genericUpdateDeckOfCards - error updating deck of cards applet", e);
+            //Toast.makeText(activity, activity.getString(R.string.error_updating_deck_of_cards), Toast.LENGTH_SHORT).show();
+            //Log.e("ToqAN", "ToqAN.genericUpdateDeckOfCards - error updating deck of cards applet", e);
         }
 
         try{

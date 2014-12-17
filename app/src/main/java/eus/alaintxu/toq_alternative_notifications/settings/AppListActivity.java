@@ -1,6 +1,7 @@
 package eus.alaintxu.toq_alternative_notifications.settings;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
