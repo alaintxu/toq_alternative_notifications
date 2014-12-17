@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 import android.widget.TextView;
@@ -15,7 +16,9 @@ import android.widget.Toast;
 
 import com.qualcomm.toq.smartwatch.api.v1.deckofcards.Constants;
 import com.qualcomm.toq.smartwatch.api.v1.deckofcards.DeckOfCardsEventListener;
+import com.qualcomm.toq.smartwatch.api.v1.deckofcards.card.Card;
 import com.qualcomm.toq.smartwatch.api.v1.deckofcards.card.ListCard;
+import com.qualcomm.toq.smartwatch.api.v1.deckofcards.card.SimpleTextCard;
 import com.qualcomm.toq.smartwatch.api.v1.deckofcards.remote.DeckOfCardsManager;
 import com.qualcomm.toq.smartwatch.api.v1.deckofcards.remote.DeckOfCardsManagerListener;
 import com.qualcomm.toq.smartwatch.api.v1.deckofcards.remote.RemoteDeckOfCards;
@@ -28,6 +31,7 @@ import com.qualcomm.toq.smartwatch.api.v1.deckofcards.util.ParcelableUtil;
 import java.io.InputStream;
 import java.util.Map;
 
+import eus.alaintxu.toq_alternative_notifications.NotificationListener;
 import eus.alaintxu.toq_alternative_notifications.R;
 
 /**
@@ -294,11 +298,17 @@ public class ToqInterface {
          * @see com.qualcomm.toq.smartwatch.api.v1.deckofcards.DeckOfCardsEventListener#onMenuOptionSelected(java.lang.String, java.lang.String)
          */
         public void onMenuOptionSelected(final String cardId, final String menuOption){
-            activity.runOnUiThread(new Runnable(){
-                public void run(){
-                    Toast.makeText(activity, activity.getString(R.string.event_menu_option_selected) + cardId + " [" + menuOption + "]", Toast.LENGTH_SHORT).show();
+            try {
+                ListCard listCard = deckOfCards.getListCard();
+                SimpleTextCard card = (SimpleTextCard) listCard.get(cardId);
+                String infoText = card.getInfoText();
+
+                if (menuOption.equals("Dismiss")) {
+                    NotificationListener.getInstance().cancelNotification(infoText);
                 }
-            });
+            }catch (Exception e) {
+                Log.e("ToqAN",e.getMessage());
+            }
         }
 
         /**

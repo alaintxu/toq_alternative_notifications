@@ -25,7 +25,6 @@ import java.util.Map;
  * Created by aperez on 11/12/14.
  */
 public class ToqNotification {
-    private static String[] respondablePkgs = {"com.google.android.talk","com.whatsapp"};
     private int id;
     private String pkg        = "";
     private String appName    = "";
@@ -46,7 +45,12 @@ public class ToqNotification {
 
             setId(sbn.getId());
             setPkg(sbn.getPackageName());
-            setAppName(appNames.get(getPkg()).toString());
+
+            CharSequence appName = appNames.get(pkg);
+            if (appName!=null)
+                setAppName(appNames.get(getPkg()).toString());
+            else
+                setAppName("");
             setTag(sbn.getTag());
             setKey(sbn.getKey());
             if(n!=null && n.tickerText!=null)
@@ -97,7 +101,10 @@ public class ToqNotification {
     }
 
     public String getAppName() {
-        return appName;
+        if (appName.equals(""))
+            return "System";
+        else
+            return appName;
     }
 
     public void setAppName(String appName) {
@@ -163,29 +170,17 @@ public class ToqNotification {
     public void setWhen(long when) {
         this.when = when;
     }
-    public Boolean isRespondable(){
-        for(int i=0;i<respondablePkgs.length;i++){
-            if(getPkg().equals(respondablePkgs[i])){
-                return true;
-            }
+
+    private String getDateString(){
+        // Date
+        String dateString = "\n";
+        if(getWhen()>0) {
+            Calendar c = new GregorianCalendar();
+            c.setTimeInMillis(getWhen());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/mm/dd HH:mm:ss");
+            dateString = sdf.format(c.getTime());
         }
-        return false;
-    }
-
-
-
-
-    public SimpleTextCard getNotificationSimpleTextCard(int id){
-        // Create SimpleTextCard
-        SimpleTextCard simpleTextCard= new SimpleTextCard(""+id);
-        simpleTextCard.setHeaderText(getAppName());
-        simpleTextCard.setTitleText(getTitle());
-        simpleTextCard.setMessageText(getMessageText());
-        simpleTextCard.setReceivingEvents(isRespondable());
-        simpleTextCard.setMenuOptionObjs(new MenuOption[]{new MenuOption("Delete", false), new MenuOption("Respond", true)});
-        simpleTextCard.setShowDivider(false);
-
-        return simpleTextCard;
+        return dateString;
     }
 
     public NotificationTextCard getNotificationTextCard(){
@@ -196,10 +191,59 @@ public class ToqNotification {
         );
     }
 
-    /* NotificationText functions */
+    public SimpleTextCard getNotificationSimpleTextCard(int id){
+        MenuOption[] options = getMenuOptions();
+        // Create SimpleTextCard
+        SimpleTextCard simpleTextCard= new SimpleTextCard(""+id);
+        simpleTextCard.setHeaderText(getAppName());
+        simpleTextCard.setTitleText(getTitle());
+        simpleTextCard.setMessageText(getMessageText());
+        simpleTextCard.setInfoText(getKey());
+        if (options==null || options.length<=0) {
+            simpleTextCard.setReceivingEvents(false);
+        }else{
+            simpleTextCard.setReceivingEvents(true);
+            simpleTextCard.setMenuOptionObjs(options);
+        }
+        simpleTextCard.setShowDivider(false);
+
+        return simpleTextCard;
+    }
+    /* Package depending functions */
+
+    public MenuOption[] getMenuOptions(){
+        MenuOption[] options;
+        /*if (getPkg().equals("com.google.android.talk")){
+            // Hangout message
+            options = getHangoutMenuOptions();
+        }
+        else */
+        if (appName.equals("")){
+            // Usually system apps, do not add options menu.
+            options = null;
+        }else{
+            options = new MenuOption[]{
+                    new MenuOption("Dismiss", false)
+            };
+        }
+        return options;
+    }
+
     private String[] getNotificationText(){
         return getGenericNotificationText();
     }
+
+    private String[] getMessageText() {
+        String[] messageText;
+        if (pkg.equals("com.google.android.talk")){
+            // Different messages for different packages.
+            messageText = getHangoutMessageText();
+        }else{
+            messageText = getGenericMessageText();
+        }
+        return messageText;
+    }
+    /* Generic functions */
 
     public String[] getGenericNotificationText() {
         String text = "";
@@ -209,31 +253,28 @@ public class ToqNotification {
         return ToqInterface.splitString(text);
     }
 
-    /* MessageText functions */
-    private String[] getMessageText() {
-        String[] messageText;
-        /*if (pkg.equals("")){
-            // Different messagesfor different packages.
-            messageText = null;
-        }else{*/
-            messageText = getGenericMessageText();
-        //}
-        return messageText;
+    private String[] getGenericMessageText(){
+        String messageText;
+        messageText = getDateString() + '\n';
+        messageText += getTickerText() + '\n';
+        messageText += getText();
+        return ToqInterface.splitString(messageText);
     }
 
-    private String[] getGenericMessageText(){
-        String messageText = "";
+    /* Hangout functions */
+    /*private MenuOption[] getHangoutMenuOptions(){
+        MenuOption[] options = new MenuOption[]{
+            new MenuOption("Dismiss", false),
+            new MenuOption("Respond", true)
+        };
 
-        // Date
-        String dateString = "\n";
-        if(getWhen()>0) {
-            Calendar c = new GregorianCalendar();
-            c.setTimeInMillis(getWhen());
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/mm/dd HH:mm:ss");
-            dateString = sdf.format(c.getTime());
-        }
-        messageText = dateString + '\n';
-        messageText += getTickerText() + '\n';
+        return options;
+    }*/
+
+    private String[] getHangoutMessageText(){
+        String messageText;
+        messageText = getDateString() + '\n';
+        // No tickerText
         messageText += getText();
         return ToqInterface.splitString(messageText);
     }
