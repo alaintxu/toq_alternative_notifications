@@ -3,9 +3,13 @@
     <item android:id="@+id/action_apps"
         android:icon="@android:drawable/ic_menu_agenda"
         android:title="@string/action_apps"
+        android:showAsAction="never"/>
+    <item android:id="@+id/action_about"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="@string/action_about"
         android:showAsAction="ifRoom"/>
     <item android:id="@+id/action_stop"
         android:icon="@android:drawable/ic_menu_close_clear_cancel"
         android:title="@string/action_stop"
-        android:showAsAction="ifRoom|withText"/>
+        android:showAsAction="never"/>
 </menu>

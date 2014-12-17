@@ -76,5 +76,6 @@
     <string name="steps_uninstall_deck_of_card_title">Uninstall applet</string>
     <string name="steps_uninstall_deck_of_card">If you are not going to use this app anymore, uninstall the applet clicking the button below and then click on "stop and exit" in the action bar.</string>
     <string name="doc_uninstall_button">Uninstall</string>
+    <string name="action_about">About Us</string>
 
 </resources>

@@ -2,6 +2,7 @@ package eus.alaintxu.toq_alternative_notifications;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -48,6 +49,10 @@ public class ToqAlternativeNotifications extends Activity{
             case R.id.action_apps:
                 openSettings();
                 return true;
+            case R.id.action_about:
+                String url = "http://alaintxu.github.io/toq_alternative_notifications";
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
             case R.id.action_stop:
                 toqInterface.destroy();
 
