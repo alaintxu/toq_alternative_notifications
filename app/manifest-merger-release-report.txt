@@ -53,35 +53,49 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:24:17
 	android:name
 		ADDED from AndroidManifest.xml:24:27
-receiver#eus.alaintxu.toq_alternative_notifications.toq.ToqAppletInstallationBroadcastReceiver
-ADDED from AndroidManifest.xml:28:9
-	android:exported
-		ADDED from AndroidManifest.xml:31:13
-	android:enabled
+activity#eus.alaintxu.toq_alternative_notifications.settings.AppListActivity
+ADDED from AndroidManifest.xml:27:9
+	android:label
+		ADDED from AndroidManifest.xml:29:13
+	android:parentActivityName
 		ADDED from AndroidManifest.xml:30:13
 	android:name
-		ADDED from AndroidManifest.xml:29:13
-intent-filter#com.qualcomm.toq.smartwatch.install.applet
-ADDED from AndroidManifest.xml:32:13
-action#com.qualcomm.toq.smartwatch.install.applet
-ADDED from AndroidManifest.xml:33:17
+		ADDED from AndroidManifest.xml:28:13
+meta-data#android.support.PARENT_ACTIVITY
+ADDED from AndroidManifest.xml:31:13
 	android:name
-		ADDED from AndroidManifest.xml:33:25
-service#eus.alaintxu.toq_alternative_notifications.NotificationListener
-ADDED from AndroidManifest.xml:37:9
-	android:label
+		ADDED from AndroidManifest.xml:32:17
+	android:value
+		ADDED from AndroidManifest.xml:33:17
+receiver#eus.alaintxu.toq_alternative_notifications.toq.ToqAppletInstallationBroadcastReceiver
+ADDED from AndroidManifest.xml:36:9
+	android:exported
 		ADDED from AndroidManifest.xml:39:13
-	android:permission
-		ADDED from AndroidManifest.xml:40:13
-	android:name
+	android:enabled
 		ADDED from AndroidManifest.xml:38:13
+	android:name
+		ADDED from AndroidManifest.xml:37:13
+intent-filter#com.qualcomm.toq.smartwatch.install.applet
+ADDED from AndroidManifest.xml:40:13
+action#com.qualcomm.toq.smartwatch.install.applet
+ADDED from AndroidManifest.xml:41:17
+	android:name
+		ADDED from AndroidManifest.xml:41:25
+service#eus.alaintxu.toq_alternative_notifications.NotificationListener
+ADDED from AndroidManifest.xml:45:9
+	android:label
+		ADDED from AndroidManifest.xml:47:13
+	android:permission
+		ADDED from AndroidManifest.xml:48:13
+	android:name
+		ADDED from AndroidManifest.xml:46:13
 intent-filter#android.service.notification.NotificationListenerService
-ADDED from AndroidManifest.xml:41:13
+ADDED from AndroidManifest.xml:49:13
 action#android.service.notification.NotificationListenerService
-ADDED from AndroidManifest.xml:42:17
+ADDED from AndroidManifest.xml:50:17
 	android:name
-		ADDED from AndroidManifest.xml:42:25
+		ADDED from AndroidManifest.xml:50:25
 uses-permission#android.permission.BIND_NOTIFICATION_LISTENER_SERVICE
-ADDED from AndroidManifest.xml:48:5
+ADDED from AndroidManifest.xml:56:5
 	android:name
-		ADDED from AndroidManifest.xml:48:22
+		ADDED from AndroidManifest.xml:56:22
