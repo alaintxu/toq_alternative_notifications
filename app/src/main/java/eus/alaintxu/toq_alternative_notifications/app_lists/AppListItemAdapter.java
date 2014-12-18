@@ -1,4 +1,4 @@
-package eus.alaintxu.toq_alternative_notifications.settings;
+package eus.alaintxu.toq_alternative_notifications.app_lists;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -48,6 +48,7 @@ public class AppListItemAdapter extends ArrayAdapter<MyApplicationInfo> {
              if (appCB != null){
                  appCB.setTag(position);
                  appCB.setChecked(app.notify);
+                 appCB.setEnabled(app.enabled);
              }
             if (appTitle != null){
                 appTitle.setText(app.title);

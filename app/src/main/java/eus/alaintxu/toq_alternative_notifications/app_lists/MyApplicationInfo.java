@@ -1,4 +1,4 @@
-package eus.alaintxu.toq_alternative_notifications.settings;
+package eus.alaintxu.toq_alternative_notifications.app_lists;
 
 /**
  * Created by aperez on 15/12/14.
@@ -35,6 +35,11 @@ class MyApplicationInfo {
      * If the app is selected for notifications.
      */
     Boolean notify;
+
+    /**
+     * If the checkbox must be enabled or not.
+     */
+    boolean enabled;
 
     /**
      * When set to true, indicates that the icon has been resized.

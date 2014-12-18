@@ -1,4 +1,4 @@
-package eus.alaintxu.toq_alternative_notifications.settings;
+package eus.alaintxu.toq_alternative_notifications.app_lists;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,10 +6,11 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
@@ -19,31 +20,58 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import eus.alaintxu.toq_alternative_notifications.MainActivity;
 import eus.alaintxu.toq_alternative_notifications.R;
 
-/**
- * Created by aperez on 15/12/14.
- */
-public class AppListActivity extends Activity {
+public class NotificationsAppListFragment extends Fragment {
+    private static final String ARG_SECTION_NUMBER = "section_number";
     private ArrayList<MyApplicationInfo> mApplications;
     private ListView lv;
     private AppListItemAdapter alia;
     private SharedPreferences mPrefs;
 
+
+    public static NotificationsAppListFragment newInstance(int sectionNumber) {
+        NotificationsAppListFragment fragment = new NotificationsAppListFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public NotificationsAppListFragment() {}
+
+
     @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
-        setContentView(R.layout.settings);
-        mPrefs = getSharedPreferences("ToqAN",0);
-        drawList();
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        ((MainActivity) activity).onSectionAttached(
+                getArguments().getInt(ARG_SECTION_NUMBER));
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mPrefs = getActivity().getSharedPreferences("ToqAN",0);
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_notifications_app_list, container, false);
+    }
+    @Override
+    public void onActivityCreated(Bundle b){
+        super.onActivityCreated(b);
+        drawList();
+    }
+
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
+        MenuInflater inflater = getActivity().getMenuInflater();
         inflater.inflate(R.menu.app_list_actions,menu);
         return super.onCreateOptionsMenu(menu);
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
@@ -61,7 +89,7 @@ public class AppListActivity extends Activity {
     }
 
     private void loadApplications() {
-        PackageManager manager = getPackageManager();
+        PackageManager manager = getActivity().getPackageManager();
 
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -96,9 +124,9 @@ public class AppListActivity extends Activity {
         }
     }
     public void drawList(){
-        lv = (ListView) findViewById(R.id.appsListView);
+        lv = (ListView) getView().findViewById(R.id.appsListView);
         loadApplications();
-        alia = new AppListItemAdapter(this, android.R.layout.simple_list_item_1, mApplications);
+        alia = new AppListItemAdapter(getActivity(), android.R.layout.simple_list_item_1, mApplications);
         lv.setAdapter(alia);
     }
 

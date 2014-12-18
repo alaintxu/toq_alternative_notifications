@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/RelativeLayout01"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TitleText"
+                android:text="@string/steps"
+                android:id="@+id/stepsTV"/>
+
+            <View style="@style/Divider"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/StepTitle"
+                    android:text="@string/steps_install_deck_of_card_title"
+                    android:id="@+id/steps_install_deck_of_card_title"/>
+
+                <ImageButton
+                    style="@style/StepInfoButton"
+                    android:id="@+id/steps_install_deck_of_card_button"/>
+
+            </LinearLayout>
+            <TextView
+                style="@style/StepDescription"
+                android:id="@+id/steps_install_deck_of_card"
+                android:text="@string/steps_install_deck_of_card"/>
+            <Button
+                style="@style/StepButton"
+                android:id="@+id/doc_install_button"
+                android:text="@string/doc_install_button" />
+
+            <View style="@style/Divider"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/StepTitle"
+                    android:text="@string/steps_permissions_title"
+                    android:id="@+id/steps_permissions_title"/>
+
+                <ImageButton
+                    style="@style/StepInfoButton"
+                    android:id="@+id/steps_permissions_button"/>
+
+            </LinearLayout>
+            <TextView
+                style="@style/StepDescription"
+                android:text="@string/steps_permissions"
+                android:id="@+id/steps_permissions"/>
+            <Button
+                style="@style/StepButton"
+                android:id="@+id/doc_check_permissions"
+                android:text="@string/doc_check_permissions"/>
+
+
+            <TextView
+                style="@style/TitleText"
+                android:text="@string/steps_optional"
+                android:id="@+id/steps_optional"/>
+
+            <View style="@style/Divider"/>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/StepTitle"
+                    android:text="@string/steps_duplicate_notifications_title"
+                    android:id="@+id/steps_duplicate_notifications_title"/>
+                <ImageButton
+                    style="@style/StepInfoButton"
+                    android:id="@+id/steps_duplicate_notifications_button"/>
+
+            </LinearLayout>
+            <TextView
+                style="@style/StepDescription"
+                android:text="@string/steps_duplicate_notifications"
+                android:id="@+id/steps_duplicate_notifications"
+                android:visibility="visible" />
+
+            <View style="@style/Divider"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/StepTitle"
+                    android:text="@string/steps_connection_title"
+                    android:id="@+id/steps_connection_title"/>
+
+                <ImageButton
+                    style="@style/StepInfoButton"
+                    android:id="@+id/steps_connection_button"/>
+
+            </LinearLayout>
+            <TextView
+                style="@style/StepDescription"
+                android:text="@string/steps_connection"
+                android:id="@+id/steps_connection"/>
+
+            <Button
+                style="@style/StepButton"
+                android:id="@+id/check_connection_button"
+                android:text="@string/check_connection_button" />
+
+
+            <View style="@style/Divider"/>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/StepTitle"
+                    android:text="@string/steps_uninstall_deck_of_card_title"
+                    android:id="@+id/steps_uninstall_deck_of_card_title"
+                    android:textColor="@android:color/holo_red_light"/>
+                <ImageButton
+                    style="@style/StepInfoButton"
+                    android:id="@+id/steps_uninstall_deck_of_card_button"/>
+
+            </LinearLayout>
+            <TextView
+                style="@style/StepDescription"
+                android:text="@string/steps_uninstall_deck_of_card"
+                android:id="@+id/steps_uninstall_deck_of_card"/>
+            <Button
+                style="@style/StepButton"
+                android:id="@+id/doc_uninstall_button"
+                android:text="@string/doc_uninstall_button"/>
+
+            <View style="@style/Divider"
+                android:background="@null"
+                android:layout_marginTop="15dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/status_panel"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="0dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:layout_weight="0">
+
+        <View style="@style/Divider"
+            android:layout_marginTop="0dp"/>
+
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+</LinearLayout>

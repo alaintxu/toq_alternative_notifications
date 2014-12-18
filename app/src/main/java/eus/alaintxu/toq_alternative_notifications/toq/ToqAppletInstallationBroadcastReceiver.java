@@ -7,7 +7,7 @@ import android.util.Log;
 
 import com.qualcomm.toq.smartwatch.api.v1.deckofcards.Constants;
 
-import eus.alaintxu.toq_alternative_notifications.ToqAlternativeNotifications;
+import eus.alaintxu.toq_alternative_notifications.MainActivity;
 
 
 /**
@@ -24,7 +24,7 @@ public class ToqAppletInstallationBroadcastReceiver extends BroadcastReceiver{
         Log.d(Constants.TAG, "ToqAppletInstallationBroadcastReceiver.onReceive - context: " + context + ", intent: " + intent);
 
         // Launch ToqAN activity to complete the install of the deck of cards applet
-        Intent launchIntent= new Intent(context, ToqAlternativeNotifications.class);
+        Intent launchIntent= new Intent(context, MainActivity.class);
         launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
 
         context.startActivity(launchIntent);

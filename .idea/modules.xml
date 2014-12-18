@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/toq_alternative_notifications.iml" filepath="$PROJECT_DIR$/toq_alternative_notifications.iml" />
       <module fileurl="file://$PROJECT_DIR$/toq_alternative_notifications1.iml" filepath="$PROJECT_DIR$/toq_alternative_notifications1.iml" />
     </modules>
   </component>

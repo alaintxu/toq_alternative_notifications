@@ -382,7 +382,9 @@ public class ToqInterface {
 
     // Set status bar message
     private void setStatus(String msg){
-        statusTextView.setText(msg);
+        if (statusTextView != null) {
+            statusTextView.setText(msg);
+        }
     }
 
 
@@ -489,8 +491,10 @@ public class ToqInterface {
     // Initialise the UI
     private void initUI(){
         // Status
-        statusTextView= (TextView)activity.findViewById(R.id.status_text);
-        statusTextView.setText("Initialised");
+        statusTextView = (TextView) activity.findViewById(R.id.status_text);
+        if (statusTextView != null) {
+            statusTextView.setText("Initialised");
+        }
     }
 
 
