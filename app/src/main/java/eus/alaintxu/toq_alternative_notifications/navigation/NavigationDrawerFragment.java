@@ -1,4 +1,4 @@
-package eus.alaintxu.toq_alternative_notifications;
+package eus.alaintxu.toq_alternative_notifications.navigation;
 
 
 import android.app.Activity;
@@ -21,6 +21,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import eus.alaintxu.toq_alternative_notifications.R;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -105,6 +107,7 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.section_main),
                         getString(R.string.section_notifications),
                         getString(R.string.section_applet),
+                        getString(R.string.action_about),
                         getString(R.string.action_stop)
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
@@ -243,7 +246,7 @@ public class NavigationDrawerFragment extends Fragment {
                     inflater.inflate(R.menu.app_list_actions,menu);
                     break;
                 default:
-                    inflater.inflate(R.menu.main_actions,menu);
+                    //inflater.inflate(R.menu.main_actions,menu);
             }
             showGlobalContextActionBar();
         }

@@ -30,6 +30,7 @@ import com.qualcomm.toq.smartwatch.api.v1.deckofcards.util.ParcelableUtil;
 
 import java.io.InputStream;
 import java.util.Map;
+import java.util.Set;
 
 import eus.alaintxu.toq_alternative_notifications.NotificationListener;
 import eus.alaintxu.toq_alternative_notifications.R;
@@ -94,7 +95,7 @@ public class ToqInterface {
     }
 
 
-    public void updateDeckOfCardsWithNotifications(StatusBarNotification[] sbns,Map<CharSequence,CharSequence> appNames) {
+    public void updateDeckOfCardsWithNotifications(StatusBarNotification[] sbns,Map<CharSequence,CharSequence> appNames, Set<String> pkgs) {
         ListCard listCard = deckOfCards.getListCard();
         deleteListCard(listCard);
 
@@ -102,12 +103,14 @@ public class ToqInterface {
             int nofnotifications = sbns.length;
 
             for (int i = 0; i < nofnotifications; i++) {
-                ToqNotification toqNotification = new ToqNotification(sbns[i],appNames);
-                try {
-                    if (toqNotification.getTitle() != "")
-                        listCard.add(toqNotification.getNotificationSimpleTextCard(i));
-                } catch (Exception e) {
-                    Log.e("ToqAN", "Error on updateDeckOfCardsWithNotifications: ", e);
+                if (pkgs == null || pkgs.contains(sbns[i].getPackageName())) {
+                    ToqNotification toqNotification = new ToqNotification(sbns[i], appNames);
+                    try {
+                        if (toqNotification.getTitle() != "")
+                            listCard.add(toqNotification.getNotificationSimpleTextCard(i));
+                    } catch (Exception e) {
+                        Log.e("ToqAN", "Error on updateDeckOfCardsWithNotifications: ", e);
+                    }
                 }
             }
         }
@@ -503,7 +506,7 @@ public class ToqInterface {
 
         Log.d("ToqAN", "ToqAN.installDeckOfCards");
 
-        updateDeckOfCardsWithNotifications(null,null);
+        updateDeckOfCardsWithNotifications(null,null,null);
 
         try{
             deckOfCardsManager.installDeckOfCards(deckOfCards, resourceStore);

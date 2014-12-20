@@ -11,6 +11,7 @@ import android.util.Log;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -75,8 +76,21 @@ public class NotificationListener extends NotificationListenerService {
      * all notifications.
      */
     private void updateDeckOfCardsWithStatusBarNotifications() {
+        Set<String> pkgs = null;
+        Boolean applet_all = mPrefs.getBoolean("applet_all",true);
+        if (!applet_all){
+            Boolean applet_same_as_notifications = mPrefs.getBoolean("applet_same_as_notifications",false);
+            if (applet_same_as_notifications){
+                // get packages from notification WhiteList
+                pkgs = mPrefs.getStringSet("pkgs",new HashSet<String>());
+            }else{
+                // get packages from applet WhiteList
+                pkgs = mPrefs.getStringSet("pkgs",new HashSet<String>());
+            }
+        }
+
         StatusBarNotification[] sbns = this.getActiveNotifications();
-        toqInterface.updateDeckOfCardsWithNotifications(sbns,appNames);
+        toqInterface.updateDeckOfCardsWithNotifications(sbns, appNames, pkgs);
     }
 
     /**

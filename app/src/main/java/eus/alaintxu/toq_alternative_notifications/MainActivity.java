@@ -5,19 +5,22 @@ import android.app.Activity;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Window;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import eus.alaintxu.toq_alternative_notifications.app_lists.AppletAppListFragment;
 import eus.alaintxu.toq_alternative_notifications.app_lists.NotificationsAppListFragment;
+import eus.alaintxu.toq_alternative_notifications.navigation.NavigationDrawerFragment;
 import eus.alaintxu.toq_alternative_notifications.toq.ToqInterface;
 import eus.alaintxu.toq_alternative_notifications.toq.ToqNotification;
 
@@ -41,6 +44,10 @@ public class MainActivity extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("ToqAN", "ToqAN.onCreate");
+
+        // enable transitions
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+
         setContentView(R.layout.activity_main);
 
         // Set up Navigation drawer.
@@ -57,6 +64,7 @@ public class MainActivity extends Activity
         toqInterface.initToqInterface(this);
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+
     }
 
     protected void onStart(){
@@ -80,14 +88,20 @@ public class MainActivity extends Activity
                 currentFragment = AppletAppListFragment.newInstance(position +1);
                 break;
             case 3:
+                String url = "http://alaintxu.github.io/toq_alternative_notifications";
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
+                break;
+            case 4:
                 stopAndExit();
                 break;
             default:
-                currentFragment = PlaceholderFragment.newInstance(position + 1);
+                currentFragment = MainFragment.newInstance(position + 1);
         }
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, currentFragment)
-                .commit();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.container, currentFragment);
+        //ft.setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+        ft.commit();
     }
 
     public void onSectionAttached(int number) {
@@ -117,11 +131,11 @@ public class MainActivity extends Activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.action_about:
+            /*case R.id.action_about:
                 String url = "http://alaintxu.github.io/toq_alternative_notifications";
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(browserIntent);
-                break;
+                break;*/
             case R.id.action_select_all:
             case R.id.action_select_none:
                 currentFragment.onOptionsItemSelected(item);
@@ -133,17 +147,9 @@ public class MainActivity extends Activity
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
+    /*public static class PlaceholderFragment extends Fragment {
         private static final String ARG_SECTION_NUMBER = "section_number";
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -158,6 +164,9 @@ public class MainActivity extends Activity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            // Animation
+            //Animation animation = AnimationUtils.loadAnimation(getActivity(), android.R.anim.slide_in_left);
+            //container.startAnimation(animation);
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             return rootView;
         }
@@ -168,7 +177,7 @@ public class MainActivity extends Activity
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
-    }
+    }*/
 
 
     /**
@@ -206,12 +215,21 @@ public class MainActivity extends Activity
     }
 
     private void toggleVisibility(int viewId) {
-        TextView tv = (TextView) findViewById(viewId);
+        final TextView tv = (TextView) findViewById(viewId);
+        int visibility;
         if (tv.getVisibility()==TextView.VISIBLE){
-            tv.setVisibility(TextView.GONE);
+            visibility = TextView.GONE;
         }else{
-            tv.setVisibility(TextView.VISIBLE);
+            visibility = TextView.VISIBLE;
         }
+        tv.setVisibility(visibility);
+        LinearLayout stepll = (LinearLayout)tv.getParent();
+        LinearLayout steplistll = (LinearLayout)stepll.getParent();
+        ScrollView steplistsv = (ScrollView)steplistll.getParent();
+
+        /*stepll.animate();
+        steplistll.animate();
+        steplistsv.animate();*/
     }
 
     /**
@@ -251,4 +269,5 @@ public class MainActivity extends Activity
         /* I don't know how to kill NotificationListener service */
         finish();
     }
+
 }

@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -62,6 +64,9 @@ public class AppListItemAdapter extends ArrayAdapter<MyApplicationInfo> {
                 appIcon.setImageDrawable(app.icon);
             }
         }
+
+        Animation animation = AnimationUtils.loadAnimation(context,R.anim.app_item_in);
+        v.startAnimation(animation);
 
         return v;
     }

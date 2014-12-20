@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/AppListHeader">
+        <TextView
+            style="@style/AppListHeaderTitle"
+            android:text="@string/applet_app_list_description"
+            android:id="@+id/app_list_description"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/applet_all"
+            android:id="@+id/applet_all"
+            android:onClick="onCheckBoxClicked"
+            android:textColor="@color/textColor"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/applet_same_as_notifications"
+            android:id="@+id/applet_same_as_notifications"
+            android:onClick="onCheckBoxClicked"
+            android:textColor="@color/textColor"/>
+</LinearLayout>

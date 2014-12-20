@@ -11,8 +11,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,33 +48,30 @@ public class NotificationsAppListFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        mPrefs = activity.getSharedPreferences("ToqAN",0);
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
-    }
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mPrefs = getActivity().getSharedPreferences("ToqAN",0);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Animation
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), android.R.anim.slide_in_left);
+        container.startAnimation(animation);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_notifications_app_list, container, false);
     }
+
     @Override
     public void onActivityCreated(Bundle b){
         super.onActivityCreated(b);
+        lv = (ListView) getView().findViewById(R.id.appsListView);
+        lv.setHeaderDividersEnabled(true);
+        View headerView = getActivity().getLayoutInflater().inflate(R.layout.fragment_notifications_app_list_header, null);
+        lv.addHeaderView(headerView);
         drawList();
     }
-
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getActivity().getMenuInflater();
-        inflater.inflate(R.menu.app_list_actions,menu);
-        return super.onCreateOptionsMenu(menu);
-    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
@@ -113,6 +113,7 @@ public class NotificationsAppListFragment extends Fragment {
                 application.title = info.loadLabel(manager);
                 application.pkg = info.activityInfo.applicationInfo.packageName;
                 application.icon = info.activityInfo.loadIcon(manager);
+                application.enabled = true;
                 if (pkgs != null && pkgs.contains(application.pkg.toString()))
                     application.notify = true;
                 else
@@ -124,7 +125,6 @@ public class NotificationsAppListFragment extends Fragment {
         }
     }
     public void drawList(){
-        lv = (ListView) getView().findViewById(R.id.appsListView);
         loadApplications();
         alia = new AppListItemAdapter(getActivity(), android.R.layout.simple_list_item_1, mApplications);
         lv.setAdapter(alia);
@@ -141,6 +141,7 @@ public class NotificationsAppListFragment extends Fragment {
         for (MyApplicationInfo app : mApplications){
             app.notify = checked;
         }
+        alia.notifyDataSetChanged();
     }
 
     public void savePreferences(){
@@ -153,8 +154,6 @@ public class NotificationsAppListFragment extends Fragment {
         }
         editor.remove("pkgs");
         editor.putStringSet("pkgs",pkgs).commit();
-
-        alia.notifyDataSetChanged();
     }
 
     public Boolean pkgAllreadyExists(CharSequence pkg){

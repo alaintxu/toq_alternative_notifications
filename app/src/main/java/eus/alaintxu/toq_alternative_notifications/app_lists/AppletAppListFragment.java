@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
@@ -59,12 +61,19 @@ public class AppletAppListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Animation
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), android.R.anim.slide_in_left);
+        container.startAnimation(animation);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_applet_app_list, container, false);
     }
     @Override
     public void onActivityCreated(Bundle b){
         super.onActivityCreated(b);
+        lv = (ListView) getView().findViewById(R.id.appsListView);
+        lv.setHeaderDividersEnabled(true);
+        View headerView = getActivity().getLayoutInflater().inflate(R.layout.fragment_applet_app_list_header, null);
+        lv.addHeaderView(headerView);
         drawList();
     }
 
@@ -133,7 +142,6 @@ public class AppletAppListFragment extends Fragment {
         }
     }
     public void drawList(){
-        lv = (ListView) getView().findViewById(R.id.appsListView);
         loadApplications();
         alia = new AppListItemAdapter(getActivity(), android.R.layout.simple_list_item_1, mApplications);
         lv.setAdapter(alia);
@@ -144,13 +152,17 @@ public class AppletAppListFragment extends Fragment {
         switch(v.getId()){
             case R.id.applet_all:
                 setAllCheckBox(checked);
-                if (checked)
+                if (checked) {
                     setSameAsCheckBox(false);
+                }
+                alia.notifyDataSetChanged();
                 break;
             case R.id.applet_same_as_notifications:
                 setSameAsCheckBox(checked);
-                if (checked)
+                if (checked) {
                     setAllCheckBox(false);
+                }
+                alia.notifyDataSetChanged();
                 break;
             default:
                 setAllCheckBox(false);
@@ -173,6 +185,7 @@ public class AppletAppListFragment extends Fragment {
         for (MyApplicationInfo app : mApplications){
             app.notify = checked;
         }
+        alia.notifyDataSetChanged();
     }
 
     public void setAppCheckBoxEnabled(Boolean enabled){
@@ -206,8 +219,6 @@ public class AppletAppListFragment extends Fragment {
 
         editor.remove("applet_same_as_notifications");
         editor.putBoolean("applet_same_as_notifications",cb_same_as_notifications).commit();
-
-        alia.notifyDataSetChanged();
     }
 
     public Boolean pkgAllreadyExists(CharSequence pkg){
