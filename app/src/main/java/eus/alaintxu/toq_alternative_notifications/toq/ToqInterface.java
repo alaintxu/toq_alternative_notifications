@@ -384,9 +384,14 @@ public class ToqInterface {
 
 
     // Set status bar message
-    private void setStatus(String msg){
-        if (statusTextView != null) {
+    public void setStatus(String msg){
+        try {
+            if (statusTextView == null) {
+                statusTextView = (TextView) activity.findViewById(R.id.status_text);
+            }
             statusTextView.setText(msg);
+        }catch (NullPointerException e){
+            Log.e("ToqAN","Couldn't find statusTextView");
         }
     }
 
@@ -493,11 +498,7 @@ public class ToqInterface {
 
     // Initialise the UI
     private void initUI(){
-        // Status
-        statusTextView = (TextView) activity.findViewById(R.id.status_text);
-        if (statusTextView != null) {
-            statusTextView.setText("Initialised");
-        }
+        setStatus("Initialised");
     }
 
 
@@ -512,7 +513,8 @@ public class ToqInterface {
             deckOfCardsManager.installDeckOfCards(deckOfCards, resourceStore);
         }
         catch (RemoteDeckOfCardsException e){
-            Toast.makeText(activity, activity.getString(R.string.error_installing_deck_of_cards), Toast.LENGTH_SHORT).show();
+            setStatus(e.getMessage());
+            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
             Log.e("ToqAN", "ToqAN.installDeckOfCards - error installing deck of cards applet", e);
         }
 

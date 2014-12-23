@@ -3,7 +3,9 @@
     <color name="primary">#455a64</color>
     <color name="primary_dark">#263238</color>
     <color name="accent">#90a4ae</color>
-    <color name="textColor">#455a64</color>
+    <color name="textColor">#cfd8dc</color>
     <color name="windowBackground">#f5f5f5</color>
-    <color name="cardBackground">#eceff1</color>
+    <color name="cardBackground">#263238</color>
+    <color name="cardSelected">#33691e</color>
+    <color name="cardNotSelected">#b71c1c</color>
 </resources>

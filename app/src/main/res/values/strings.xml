@@ -79,5 +79,7 @@
     <string name="applet_app_list_description">ToqAN applet will show your Android device current notifications. Select the app that will be able to show you the notifications.</string>
     <string name="applet_all">Show all notificatioins</string>
     <string name="applet_same_as_notifications">Use the same as in Notification WhiteList</string>
+    <string name="action_update">Update Order</string>
+    <string name="notification_service_null">Notification service is not initialized. Please check Permissions.</string>
 
 </resources>

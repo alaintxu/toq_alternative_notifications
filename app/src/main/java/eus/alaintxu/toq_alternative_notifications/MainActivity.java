@@ -14,12 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Window;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import eus.alaintxu.toq_alternative_notifications.app_lists.AppletAppListFragment;
-import eus.alaintxu.toq_alternative_notifications.app_lists.NotificationsAppListFragment;
+import eus.alaintxu.toq_alternative_notifications.app_lists.AppletAppRecyclerFragment;
+import eus.alaintxu.toq_alternative_notifications.app_lists.NotificationAppRecyclerFragment;
 import eus.alaintxu.toq_alternative_notifications.navigation.NavigationDrawerFragment;
 import eus.alaintxu.toq_alternative_notifications.toq.ToqInterface;
 import eus.alaintxu.toq_alternative_notifications.toq.ToqNotification;
@@ -59,20 +57,19 @@ public class MainActivity extends Activity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-        // Initialize toq interface
-        toqInterface = ToqInterface.getInstance();
-        toqInterface.initToqInterface(this);
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
     }
 
     protected void onStart(){
-
         super.onStart();
 
-        Log.d("ToqAN", "ToqAN.onStart");
+        Log.d("ToqAN", "ToqAN Main activity started");
 
+        // Initialize toq interface
+        toqInterface = ToqInterface.getInstance();
+        toqInterface.initToqInterface(this);
         toqInterface.start();
     }
 
@@ -82,10 +79,10 @@ public class MainActivity extends Activity
         FragmentManager fragmentManager = getFragmentManager();
         switch (position){
             case 1:
-                currentFragment = NotificationsAppListFragment.newInstance(position +1);
+                currentFragment = NotificationAppRecyclerFragment.newInstance(position+1);
                 break;
             case 2:
-                currentFragment = AppletAppListFragment.newInstance(position +1);
+                currentFragment = AppletAppRecyclerFragment.newInstance(position + 1);
                 break;
             case 3:
                 String url = "http://alaintxu.github.io/toq_alternative_notifications";
@@ -115,9 +112,6 @@ public class MainActivity extends Activity
             case 3:
                 mTitle = getString(R.string.section_applet);
                 break;
-            case 4:
-                mTitle = getString(R.string.action_stop);
-                break;
         }
     }
 
@@ -131,54 +125,14 @@ public class MainActivity extends Activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            /*case R.id.action_about:
-                String url = "http://alaintxu.github.io/toq_alternative_notifications";
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(browserIntent);
-                break;*/
             case R.id.action_select_all:
             case R.id.action_select_none:
+            case R.id.action_update_list:
                 currentFragment.onOptionsItemSelected(item);
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    /*public static class PlaceholderFragment extends Fragment {
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            // Animation
-            //Animation animation = AnimationUtils.loadAnimation(getActivity(), android.R.anim.slide_in_left);
-            //container.startAnimation(animation);
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
-    }*/
-
 
     /**
      * checks if it has permissions to read notifications
@@ -223,11 +177,11 @@ public class MainActivity extends Activity
             visibility = TextView.VISIBLE;
         }
         tv.setVisibility(visibility);
-        LinearLayout stepll = (LinearLayout)tv.getParent();
+        /*LinearLayout stepll = (LinearLayout)tv.getParent();
         LinearLayout steplistll = (LinearLayout)stepll.getParent();
         ScrollView steplistsv = (ScrollView)steplistll.getParent();
 
-        /*stepll.animate();
+        stepll.animate();
         steplistll.animate();
         steplistsv.animate();*/
     }
@@ -247,21 +201,43 @@ public class MainActivity extends Activity
                 checkNotificationPermissions();
                 break;
             case R.id.check_connection_button:
-                ToqNotification toqNotification = new ToqNotification();
-                toqNotification.setWhen(System.currentTimeMillis());
-                toqNotification.setTitle(getString(R.string.test_notification_title));
-                toqNotification.setAppName("ToqAN");
-                toqNotification.setText(getString(R.string.test_notification_text));
-                toqInterface.notifyToq(toqNotification);
+                checkConnection();
                 break;
         }
     }
 
+    private void checkConnection() {
+        try {
+            ToqNotification toqNotification = new ToqNotification();
+            toqNotification.setWhen(System.currentTimeMillis());
+            toqNotification.setTitle(getString(R.string.test_notification_title));
+            toqNotification.setAppName("ToqAN");
+            toqNotification.setText(getString(R.string.test_notification_text));
+            toqInterface.notifyToq(toqNotification);
+        }catch (Exception e){
+            Log.e("ToqAN","Unabled to sent test notification to the smartwatch");
+        }
+        try {
+            NotificationListener nl = NotificationListener.getInstance();
+            if (nl != null) {
+                nl.updateDeckOfCardsWithStatusBarNotifications();
+            } else {
+                toqInterface.setStatus(getResources().getString(R.string.notification_service_null));
+                Log.e("ToqAN","Notification Listener Service not started.");
+                return;
+            }
+        }catch (Exception e){
+            Log.e("ToqAN","Unabled to update status bar notifications from button.");
+            return;
+        }
+        toqInterface.setStatus(getResources().getString(R.string.status_connected));
+    }
+
     public void onCheckBoxClicked(View v){
-        if (currentFragment.getClass().equals(NotificationsAppListFragment.class)){
-            ((NotificationsAppListFragment)currentFragment).onCheckBoxClicked(v);
-        }else if (currentFragment.getClass().equals(AppletAppListFragment.class)){
-            ((AppletAppListFragment)currentFragment).onCheckBoxClicked(v);
+        if (currentFragment.getClass().equals(NotificationAppRecyclerFragment.class)){
+            ((NotificationAppRecyclerFragment)currentFragment).onCheckBoxClicked(v);
+        }else if (currentFragment.getClass().equals(AppletAppRecyclerFragment.class)){
+            ((AppletAppRecyclerFragment)currentFragment).onCheckBoxClicked(v);
         }
     }
     private void stopAndExit(){

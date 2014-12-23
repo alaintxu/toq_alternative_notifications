@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/AppListRV"
+    android:id="@+id/notifications_app_recycler">
+</android.support.v7.widget.RecyclerView>

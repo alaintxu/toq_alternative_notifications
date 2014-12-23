@@ -64,7 +64,6 @@ public class NotificationListener extends NotificationListenerService {
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
         Log.d("ToqAN", "Notification removed detected");
-        checkInitializations();
 
         // Update Deck of Cards
         updateDeckOfCardsWithStatusBarNotifications();
@@ -75,7 +74,8 @@ public class NotificationListener extends NotificationListenerService {
      * It does not check whitelist, the deck of cards shows
      * all notifications.
      */
-    private void updateDeckOfCardsWithStatusBarNotifications() {
+    public void updateDeckOfCardsWithStatusBarNotifications() {
+        checkInitializations();
         Set<String> pkgs = null;
         Boolean applet_all = mPrefs.getBoolean("applet_all",true);
         if (!applet_all){
@@ -85,7 +85,7 @@ public class NotificationListener extends NotificationListenerService {
                 pkgs = mPrefs.getStringSet("pkgs",new HashSet<String>());
             }else{
                 // get packages from applet WhiteList
-                pkgs = mPrefs.getStringSet("pkgs",new HashSet<String>());
+                pkgs = mPrefs.getStringSet("applet-pkgs", null);
             }
         }
 

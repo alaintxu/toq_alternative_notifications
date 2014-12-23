@@ -167,7 +167,7 @@
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
         android:layout_weight="0"
-        android:elevation="5dp"
+        android:elevation="15dp"
         android:background="@android:color/white">
 
         <TextView
@@ -175,7 +175,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/cardBackground"
+            android:background="@android:color/white"/>
 
     </LinearLayout>
 
