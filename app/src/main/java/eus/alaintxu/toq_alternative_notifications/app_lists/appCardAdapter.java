@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -96,10 +98,14 @@ public class appCardAdapter  extends RecyclerView.Adapter<appCardAdapter.ViewHol
 
             cardLL.setBackgroundColor(holder.mCardView.getResources().getColor(resourceTo));
             cardLL.setAlpha(alpha);
-        }
 
-        //Animation animation = AnimationUtils.loadAnimation(context, R.anim.app_item_in);
-        //v.startAnimation(animation);
+            int myAnimation = app.getAnimation();
+            if (myAnimation != MyApplicationInfo.NO_ANIMATION){
+
+                Animation animation = AnimationUtils.loadAnimation(holder.mCardView.getContext(), myAnimation);
+                holder.itemView.startAnimation(animation);
+            }
+        }
 
         //return v;
 

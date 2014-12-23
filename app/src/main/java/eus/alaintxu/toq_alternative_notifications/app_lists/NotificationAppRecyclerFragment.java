@@ -156,6 +156,7 @@ public class NotificationAppRecyclerFragment extends Fragment {
         Boolean checked = ((CheckBox) v).isChecked();
         CharSequence pkg = (CharSequence)v.getTag();
         setNotify(pkg,checked);
+        setAnimation(pkg,R.anim.checkbox_changed);
         savePreferences();
         mAdapter.notifyDataSetChanged();
     }
@@ -166,6 +167,14 @@ public class NotificationAppRecyclerFragment extends Fragment {
         for (MyApplicationInfo app : mDataset){
             if (app != null && app.getPkg().equals(pkg)){
                 app.setNotify(checked);
+            }
+        }
+    }
+
+    private void setAnimation(CharSequence pkg, int animation) {
+        for (MyApplicationInfo app : mDataset){
+            if (app != null && app.getPkg().equals(pkg)){
+                app.setAnimation(animation);
             }
         }
     }

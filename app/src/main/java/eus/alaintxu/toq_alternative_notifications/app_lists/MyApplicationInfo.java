@@ -10,11 +10,14 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import eus.alaintxu.toq_alternative_notifications.R;
+
 /**
  * Represents a launchable application. An application is made of a name (or title), an intent
  * and an icon.
  */
 class MyApplicationInfo {
+    final static int NO_ANIMATION = -1;
     /**
      * The application name.
      */
@@ -43,6 +46,8 @@ class MyApplicationInfo {
      * If the checkbox must be enabled or not.
      */
     private Boolean enabled;
+
+    private int animation = R.anim.app_item_in;
 
     public MyApplicationInfo() {
         setTitle("No Title");
@@ -98,6 +103,16 @@ class MyApplicationInfo {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public int getAnimation() {
+        int tmp = animation;
+        animation = NO_ANIMATION;
+        return tmp;
+    }
+
+    public void setAnimation(int animation) {
+        this.animation = animation;
     }
 
     @Override

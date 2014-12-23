@@ -220,6 +220,7 @@ public class AppletAppRecyclerFragment extends Fragment {
                 setSameAsCheckBox(false);
                 CharSequence pkg = (CharSequence)v.getTag();
                 setNotify(pkg, checked);
+                setAnimation(pkg,R.anim.checkbox_changed);
                 break;
         }
 
@@ -231,6 +232,14 @@ public class AppletAppRecyclerFragment extends Fragment {
         for (MyApplicationInfo app : mDataset){
             if (app != null && app.getPkg().equals(pkg)){
                 app.setNotify(checked);
+            }
+        }
+    }
+
+    private void setAnimation(CharSequence pkg, int animation) {
+        for (MyApplicationInfo app : mDataset){
+            if (app != null && app.getPkg().equals(pkg)){
+                app.setAnimation(animation);
             }
         }
     }
