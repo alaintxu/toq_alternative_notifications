@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 import android.widget.TextView;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 
 import com.qualcomm.toq.smartwatch.api.v1.deckofcards.Constants;
 import com.qualcomm.toq.smartwatch.api.v1.deckofcards.DeckOfCardsEventListener;
-import com.qualcomm.toq.smartwatch.api.v1.deckofcards.card.Card;
 import com.qualcomm.toq.smartwatch.api.v1.deckofcards.card.ListCard;
 import com.qualcomm.toq.smartwatch.api.v1.deckofcards.card.SimpleTextCard;
 import com.qualcomm.toq.smartwatch.api.v1.deckofcards.remote.DeckOfCardsManager;
@@ -257,44 +255,44 @@ public class ToqInterface {
          * @see com.qualcomm.toq.smartwatch.api.v1.deckofcards.DeckOfCardsEventListener#onCardOpen(java.lang.String)
          */
         public void onCardOpen(final String cardId){
-            activity.runOnUiThread(new Runnable(){
+            /*activity.runOnUiThread(new Runnable(){
                 public void run(){
                     Toast.makeText(activity, activity.getString(R.string.event_card_open) + cardId, Toast.LENGTH_SHORT).show();
                 }
-            });
+            });*/
         }
 
         /**
          * @see com.qualcomm.toq.smartwatch.api.v1.deckofcards.DeckOfCardsEventListener#onCardVisible(java.lang.String)
          */
         public void onCardVisible(final String cardId){
-            activity.runOnUiThread(new Runnable(){
+            /*activity.runOnUiThread(new Runnable(){
                 public void run(){
                     Toast.makeText(activity, activity.getString(R.string.event_card_visible) + cardId, Toast.LENGTH_SHORT).show();
                 }
-            });
+            });*/
         }
 
         /**
          * @see com.qualcomm.toq.smartwatch.api.v1.deckofcards.DeckOfCardsEventListener#onCardInvisible(java.lang.String)
          */
         public void onCardInvisible(final String cardId){
-            activity.runOnUiThread(new Runnable(){
+            /*activity.runOnUiThread(new Runnable(){
                 public void run(){
                     Toast.makeText(activity, activity.getString(R.string.event_card_invisible) + cardId, Toast.LENGTH_SHORT).show();
                 }
-            });
+            });*/
         }
 
         /**
          * @see com.qualcomm.toq.smartwatch.api.v1.deckofcards.DeckOfCardsEventListener#onCardClosed(java.lang.String)
          */
         public void onCardClosed(final String cardId){
-            activity.runOnUiThread(new Runnable(){
+            /*activity.runOnUiThread(new Runnable(){
                 public void run(){
                     Toast.makeText(activity, activity.getString(R.string.event_card_closed) + cardId, Toast.LENGTH_SHORT).show();
                 }
-            });
+            });*/
         }
 
         /**
@@ -318,12 +316,12 @@ public class ToqInterface {
          * @see com.qualcomm.toq.smartwatch.api.v1.deckofcards.DeckOfCardsEventListener#onMenuOptionSelected(java.lang.String, java.lang.String, java.lang.String)
          */
         public void onMenuOptionSelected(final String cardId, final String menuOption, final String quickReplyOption){
-            activity.runOnUiThread(new Runnable(){
+            /*activity.runOnUiThread(new Runnable(){
                 public void run(){
                     Toast.makeText(activity, activity.getString(R.string.event_menu_option_selected) + cardId + " [" + menuOption + ":" + quickReplyOption +
                             "]", Toast.LENGTH_SHORT).show();
                 }
-            });
+            });*/
         }
 
     }
