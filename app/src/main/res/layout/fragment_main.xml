@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@color/windowBackground">
+    android:background="@color/cardBackground">
 
     <ScrollView
         style="@style/StepList"
@@ -19,14 +19,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
             android:orientation="vertical">
 
             <TextView
                 style="@style/TitleText"
                 android:text="@string/steps"
                 android:id="@+id/stepsTV"/>
-
             <LinearLayout style="@style/StepList.Step">
                 <LinearLayout style="@style/StepList.StepText">
                     <TextView
@@ -40,7 +38,6 @@
 
                 </LinearLayout>
 
-                <View style="@style/Divider"/>
                 <TextView
                     style="@style/StepList.StepDescription"
                     android:id="@+id/steps_install_deck_of_card"
@@ -65,7 +62,6 @@
 
                 </LinearLayout>
 
-                <View style="@style/Divider"/>
                 <TextView
                     style="@style/StepList.StepDescription"
                     android:text="@string/steps_permissions"
@@ -76,6 +72,7 @@
                     android:text="@string/doc_check_permissions"/>
             </LinearLayout>
 
+            <View style="@style/Divider"/>
             <TextView
                 style="@style/TitleText"
                 android:text="@string/steps_optional"
@@ -94,15 +91,12 @@
 
             </LinearLayout>
 
-            <View style="@style/Divider"/>
             <TextView
                 style="@style/StepList.StepDescription"
                 android:text="@string/steps_duplicate_notifications"
                 android:id="@+id/steps_duplicate_notifications"
                 android:visibility="visible" />
-
         </LinearLayout>
-
 
         <LinearLayout style="@style/StepList.Step">
             <LinearLayout style="@style/StepList.StepText">
@@ -116,8 +110,6 @@
                     android:id="@+id/steps_connection_button"/>
 
             </LinearLayout>
-
-            <View style="@style/Divider"/>
             <TextView
                 style="@style/StepList.StepDescription"
                 android:text="@string/steps_connection"
@@ -144,7 +136,6 @@
 
             </LinearLayout>
 
-            <View style="@style/Divider"/>
             <TextView
                 style="@style/StepList.StepDescription"
                 android:text="@string/steps_uninstall_deck_of_card"

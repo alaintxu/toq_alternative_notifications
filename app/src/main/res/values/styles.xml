@@ -58,16 +58,15 @@
     <style name="Divider">
         <item name="android:background">@drawable/divider</item>
         <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_marginTop">5dp</item>
-        <item name="android:layout_marginBottom">5dp</item>
         <item name="android:layout_height">1dp</item>
     </style>
     <style name="TitleText">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/cardBackground</item>
+        <item name="android:background">@color/cardBackground</item>
+        <item name="android:layout_margin">5dp</item>
     </style>
     <style name="StepList">
         <item name="android:animateLayoutChanges">true</item>
@@ -78,12 +77,9 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:elevation">2dp</item>
         <item name="android:background">@color/cardBackground</item>
-        <item name="android:layout_marginLeft">1dp</item>
-        <item name="android:layout_marginRight">1dp</item>
-        <item name="android:layout_marginTop">5dp</item>
-        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
         <item name="android:padding">5dp</item>
     </style>
     <style name="StepList.StepText">
@@ -97,6 +93,7 @@
         <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:layout_margin">2dp</item>
     </style>
     <style name="StepList.StepInfoButton">
         <item name="android:layout_width">wrap_content</item>
@@ -118,7 +115,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:onClick">uiButtonClicked</item>
-        <item name="android:padding">2dp</item>
+        <item name="android:padding">10dp</item>
         <item name="android:layout_margin">2dp</item>
         <item name="android:textColor">@android:color/white</item>
     </style>

@@ -27,7 +27,6 @@
   <string name="card_btn_delete">Ezabatu</string>
   <string name="card_btn_respond">Erantzun</string>
   <string name="test_notification_title">Notifikazio froga</string>
-  <string name="test_notification_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus efficitur at erat nec condimentum. Nam eget nisi vitae massa gravida commodo. Etiam luctus metus at turpis cursus molestie. Sed sagittis orci purus, et fermentum nisi pulvinar ultricies. Curabitur egestas nibh non porta finibus. Integer maximus, orci et efficitur gravida, leo eros egestas neque, commodo ultricies lorem odio id risus. Curabitur venenatis dolor id cursus hendrerit. Donec mattis et velit eu laoreet. Duis et dignissim massa. Pellentesque finibus elit quis pharetra faucibus. Vivamus hendrerit bibendum ex, a sagittis mi imperdiet id. Donec venenatis tempus ex, sit amet eleifend sem commodo a. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas egestas erat vitae eleifend consequat. Maecenas accumsan elit arcu. Vivamus semper risus sed tincidunt sagittis. Integer cursus dui in arcu vehicula, non suscipit diam accumsan. Proin nulla est, pharetra et ante dignissim, ullamcorper convallis ligula. Phasellus laoreet leo elit, eget pretium leo fringilla gravida. Vestibulum vitae purus eget eros aliquam bibendum ut sit amet dui. Vivamus placerat auctor nisl ac eleifend. Fusce felis metus, mollis sit amet lacus sit amet, tempor consectetur ligula. Proin rutrum lobortis risus, quis facilisis urna tincidunt eu. Morbi ac gravida arcu, ut gravida sem. Suspendisse maximus in purus sit amet mollis. Suspendisse potenti.</string>
   <string name="open_settings_button">Ezarpenak</string>
   <string name="app_list_activity_name">Aplikazio zerrenda</string>
   <string name="all_apps_checkbox">Guztiak</string>
@@ -47,7 +46,7 @@
   <string name="doc_check_permissions">Baimenak</string>
   <string name="steps_optional">Aukerakoak</string>
   <string name="steps_connection_title">Konexioa konprobatu</string>
-  <string name="steps_connection">Erlojura notifikazio bat bidaliz konexioa konprobatu.</string>
+  <string name="steps_connection">Erlojura notifikazio bat bidaliz konexioa konprobatu. Appletaren datuak ere eguneratuko ditu.</string>
   <string name="check_connection_button">Konexioa</string>
   <string name="steps_duplicate_notifications_title">Bikoiztutako notifikazioak</string>
   <string name="steps_duplicate_notifications">Bikoiztutako notifikaziorik jaso nahi ez baduzu, zabaldu Toq erlojuaren aplikazio ofiziala eta kendu aplikazio guztiak notifikazioen zerrendatik.</string>
@@ -55,4 +54,13 @@
   <string name="steps_uninstall_deck_of_card">Aplikazio hau ez baduzu gehiago erabili nahi, appleta desinstalatu beheko botoia sakatuz eta ondoren \"Gelditu eta irten\" sakatu menuan.</string>
   <string name="doc_uninstall_button">Desinstalatu</string>
   <string name="action_about">Guri buruz</string>
+    <string name="action_update">Ordena Eguneratu</string>
+    <string name="applet_all">Notifikazio guztiak erakutsi</string>
+    <string name="applet_app_list_description">ToqAN appletak zure Android gailuaren momentuko notifikazioak erakutsiko ditu. Aukeratu bere notifikazioak erakusteko baimena izango duten applikazioak.</string>
+    <string name="applet_same_as_notifications">Notifikazioetako ZerrendaZuri berbera erabili.</string>
+    <string name="navigation_drawer_close">Nabigazio tiradera itxi.</string>
+    <string name="navigation_drawer_open">Nabigazio tiradera zabaldu.</string>
+    <string name="notification_service_null">Notifikazio zerbitzua ez da hasieratu. Baimenak konprobatu itzazu.</string>
+    <string name="section_applet">Appletaren ZerrendaZuria</string>
+    <string name="section_notifications">Notifikazioen ZerrendaZuria</string>
 </resources>
