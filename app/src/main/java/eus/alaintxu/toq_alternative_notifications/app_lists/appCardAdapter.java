@@ -1,5 +1,8 @@
 package eus.alaintxu.toq_alternative_notifications.app_lists;
 
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -85,6 +88,7 @@ public class appCardAdapter  extends RecyclerView.Adapter<appCardAdapter.ViewHol
             }
 
             int resourceTo;
+            int resourceFrom;
             float alpha = (float) 1;
             if (!app.getEnabled()){
                 alpha = (float) 0.25;
@@ -92,8 +96,10 @@ public class appCardAdapter  extends RecyclerView.Adapter<appCardAdapter.ViewHol
 
             if (app.getNotify()){
                 resourceTo = R.color.cardSelected;
+                resourceFrom = R.color.cardNotSelected;
             }else{
                 resourceTo = R.color.cardNotSelected;
+                resourceFrom = R.color.cardSelected;
             }
 
             cardLL.setBackgroundColor(holder.mCardView.getResources().getColor(resourceTo));

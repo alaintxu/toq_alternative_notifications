@@ -9,8 +9,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:id="@+id/card_ll"
-    android:background="@color/cardBackground">
+    android:id="@+id/card_ll">
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -20,7 +19,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/appCB"
-            android:layout_alignParentStart="true"
             android:gravity="center_vertical"
             android:layout_margin="5dp"
             android:onClick="onCheckBoxClicked"
@@ -43,20 +41,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="App Title"
                 android:id="@+id/appTitleTV"
-                android:layout_alignTop="@+id/appIconIV"
-                android:layout_toEndOf="@+id/appIconIV"
                 android:background="@android:color/transparent"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="App Package"
                 android:id="@+id/appPackageTv"
-                android:layout_below="@+id/appTitleTV"
-                android:layout_toEndOf="@+id/appIconIV"
                 android:background="@android:color/transparent"/>
         </LinearLayout>
     </LinearLayout>
